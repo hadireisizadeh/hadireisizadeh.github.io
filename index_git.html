@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadi Reisizadeh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --ink-light: #4a4a45;
+    --ink-faint: #8a8a82;
+    --cream: #faf9f6;
+    --cream-mid: #f2f0ea;
+    --accent: #8b3a3a;
+    --accent-light: #c07070;
+    --border: #dddbd3;
+    --font-serif: 'EB Garamond', Georgia, serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-name {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── LAYOUT ── */
+  .page-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  section:nth-child(1) { animation-delay: 0.1s; }
+  section:nth-child(2) { animation-delay: 0.2s; }
+  section:nth-child(3) { animation-delay: 0.3s; }
+  section:nth-child(4) { animation-delay: 0.4s; }
+  section:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  p { color: var(--ink-light); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── HERO ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 3rem;
+    align-items: start;
+    padding-top: 3.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-text .title-line {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-light);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .hero-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(139,58,58,0.04);
+  }
+
+  .avatar-wrap {
+    position: relative;
+  }
+
+  .avatar-placeholder {
+    width: 180px;
+    height: 210px;
+    background: var(--cream-mid);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .avatar-placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.3;
+  }
+
+  /* ── NEWS ── */
+  .news-list { list-style: none; }
+
+  .news-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .news-item:last-child { border-bottom: none; }
+
+  .news-date {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    color: var(--ink-faint);
+    padding-top: 0.15rem;
+    letter-spacing: 0.03em;
+  }
+
+  .news-body {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    line-height: 1.55;
+  }
+
+  .news-body strong { color: var(--ink); font-weight: 600; }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.1rem 0.45rem;
+    border-radius: 2px;
+    margin-left: 0.3rem;
+    vertical-align: middle;
+  }
+
+  .badge-conf {
+    background: rgba(139,58,58,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(139,58,58,0.2);
+  }
+
+  .badge-journal {
+    background: rgba(60,100,60,0.08);
+    color: #3a6e3a;
+    border: 1px solid rgba(60,100,60,0.2);
+  }
+
+  /* ── CV ── */
+  .cv-section { margin-bottom: 2.5rem; }
+  .cv-section:last-child { margin-bottom: 0; }
+
+  .cv-section h3 {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    align-items: start;
+  }
+
+  .cv-entry:last-child { margin-bottom: 0; }
+
+  .cv-role {
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.1rem;
+  }
+
+  .cv-place {
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  .cv-year {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+
+  .pub-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.93rem;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  .pub-item:last-child { border-bottom: none; }
+
+  .pub-me { color: var(--ink); font-weight: 600; }
+
+  .pub-venue {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin-top: 0.2rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.92rem;
+  }
+
+  .skill-label {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    color: var(--ink-faint);
+    padding-top: 0.1rem;
+    letter-spacing: 0.03em;
+  }
+
+  .skill-val { color: var(--ink-light); }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .contact-card {
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.4rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent-light);
+    background: rgba(139,58,58,0.02);
+  }
+
+  .contact-card .c-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-card .c-val {
+    font-size: 0.93rem;
+    color: var(--ink);
+    word-break: break-all;
+  }
+
+  .contact-card a { color: var(--ink); }
+  .contact-card a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    #about { grid-template-columns: 1fr; }
+    .avatar-wrap { display: none; }
+    .news-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    .cv-entry { grid-template-columns: 1fr; }
+    .cv-year { display: inline; margin-left: 0.5rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#about">Hadi Reisizadeh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrapper">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="hero-text">
+      <div class="section-label">About</div>
+      <h1>Hadi Reisizadeh</h1>
+      <div class="title-line">Postdoctoral Associate · Optimization for AI Lab · University of Minnesota</div>
+
+      <p>
+        I am a Postdoctoral Associate at the <a href="https://cse.umn.edu/ece">Optimization for AI Lab</a>,
+        <a href="https://twin-cities.umn.edu/">University of Minnesota</a>. I received my Ph.D. and M.Sc. in
+        Electrical and Computer Engineering (with a minor in Computer Science) from the University of Minnesota,
+        Twin Cities, and my B.Sc. in Electrical and Computer Engineering from Isfahan University of Technology.
+      </p>
+
+      <p>
+        My research focuses on <strong>LLM safety, optimization, and trustworthy AI</strong>. I have discovered
+        that state-of-the-art unlearning methods fail to erase knowledge under probabilistic decoding, and developed
+        <strong>BLUR</strong>, a bi-level optimization framework achieving up to 19% higher unlearning efficiency
+        on LLaMA-2-7B and Zephyr-7B-Beta. I also proposed an edge-preserving chain-of-thought condensation method
+        delivering lossless reasoning accuracy at 34% lower training cost across Qwen and LLaMA families.
+      </p>
+
+      <p>
+        I seek to advance AI systems that are not only capable, but whose behavior can be verified, corrected,
+        and trusted.
+      </p>
+
+      <div class="hero-links">
+        <a href="mailto:hadir@umn.edu">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a href="https://scholar.google.com" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Google Scholar
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+
+      </div>
+    </div>
+
+    <div class="avatar-wrap">
+      <div class="avatar-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Add your photo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <div class="section-label">News</div>
+    <ul class="news-list">
+      <li class="news-item">
+        <span class="news-date">May 2026</span>
+        <span class="news-body">
+          Paper <em>Leak@k: Unlearning Does Not Make LLMs Forget Under Probabilistic Decoding</em> accepted at
+          <strong>ICML 2026</strong>. <span class="badge badge-conf">ICML</span>
+        </span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2026</span>
+        <span class="news-body">
+          Paper <em>BLUR: A Bi-Level Optimization Approach for LLM Unlearning</em> accepted at
+          <strong>EACL 2026</strong>. <span class="badge badge-conf">EACL</span>
+        </span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">Sep 2024</span>
+        <span class="news-body">
+          Started as <strong>Postdoctoral Associate</strong> at the Optimization for AI Lab, University of Minnesota.
+        </span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2024</span>
+        <span class="news-body">
+          Paper <em>Almost Sure Convergence of Distributed Optimization with Imperfect Information Sharing</em>
+          accepted at <strong>Automatica 2024</strong>. <span class="badge badge-journal">Journal</span>
+        </span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2023</span>
+        <span class="news-body">
+          Paper <em>Distributed Optimization Over Time-Varying Graphs With Imperfect Sharing of Information</em>
+          published in <strong>IEEE Transactions on Automatic Control</strong>. <span class="badge badge-journal">Journal</span>
+        </span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">May 2023</span>
+        <span class="news-body">
+          Joined <strong>Seagate Technology</strong> as a Research Intern on the Data Trust Research Team.
+        </span>
+      </li>
+    </ul>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <p style="margin-bottom: 1.4rem;">Feel free to reach out for collaborations, research discussions, or general inquiries.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="c-label">Email</div>
+        <div class="c-val"><a href="mailto:hadir@umn.edu">hadir@umn.edu</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">Phone</div>
+        <div class="c-val">+1 (612) 245-0654</div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">LinkedIn</div>
+        <div class="c-val"><a href="https://linkedin.com" target="_blank">linkedin.com/in/hadi-reisizadeh</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">Google Scholar</div>
+        <div class="c-val"><a href="https://scholar.google.com" target="_blank">View Publications</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">Location</div>
+        <div class="c-val">Minneapolis, MN, USA</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 Hadi Reisizadeh &nbsp;·&nbsp; Postdoctoral Associate, University of Minnesota
+</footer>
+
+</body>
+</html>
