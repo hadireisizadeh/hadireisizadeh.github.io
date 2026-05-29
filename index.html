@@ -56,7 +56,6 @@
   }
   section:nth-child(1) { animation-delay: 0.1s; }
   section:nth-child(2) { animation-delay: 0.2s; }
-  section:nth-child(3) { animation-delay: 0.3s; }
 
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -66,15 +65,15 @@
     color: var(--accent); margin-bottom: 1.8rem;
   }
 
-  p { color: var(--ink-light); margin-bottom: 1rem; }
+  p { color: var(--ink); margin-bottom: 1rem; }
   p:last-child { margin-bottom: 0; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* HERO */
+  /* HERO — image left, text right */
   #about {
     display: grid;
-    grid-template-columns: 1fr 180px;
+    grid-template-columns: 180px 1fr;
     gap: 3rem; align-items: start; padding-top: 3.5rem;
   }
   .hero-text h1 {
@@ -89,18 +88,13 @@
   /* AVATAR */
   .avatar-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.9rem; }
 
-  .avatar-placeholder {
-    width: 180px; height: 210px;
-    background: var(--cream-mid); border: 1px solid var(--border);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.4rem; font-family: var(--font-mono); font-size: 0.7rem;
-    color: var(--ink-faint); letter-spacing: 0.05em; text-align: center; padding: 1rem;
+  .avatar-wrap img {
+    width: 180px; height: 210px; object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
   }
-  .avatar-placeholder svg { width: 48px; height: 48px; opacity: 0.3; }
 
-  .avatar-socials {
-    display: flex; gap: 0.7rem; justify-content: center;
-  }
+  .avatar-socials { display: flex; gap: 0.7rem; justify-content: center; }
   .avatar-socials a {
     display: flex; align-items: center; justify-content: center;
     width: 32px; height: 32px;
@@ -135,20 +129,11 @@
   .badge-conf { background: rgba(139,58,58,0.08); color: var(--accent); border: 1px solid rgba(139,58,58,0.2); }
   .badge-journal { background: rgba(60,100,60,0.08); color: #3a6e3a; border: 1px solid rgba(60,100,60,0.2); }
 
-  /* CONTACT */
-  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 0.5rem; }
-  .contact-card { border: 1px solid var(--border); padding: 1.2rem 1.4rem; transition: border-color 0.2s, background 0.2s; }
-  .contact-card:hover { border-color: var(--accent-light); background: rgba(139,58,58,0.02); }
-  .contact-card .c-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
-  .contact-card .c-val { font-size: 0.93rem; color: var(--ink); word-break: break-all; }
-  .contact-card a { color: var(--ink); }
-  .contact-card a:hover { color: var(--accent); text-decoration: none; }
-
   footer { text-align: center; padding: 2.5rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.05em; }
 
   @media (max-width: 640px) {
     #about { grid-template-columns: 1fr; }
-    .avatar-wrap { flex-direction: row; flex-wrap: wrap; }
+    .avatar-wrap { flex-direction: column; align-items: center; }
     .news-item { grid-template-columns: 1fr; gap: 0.2rem; }
   }
 </style>
@@ -156,11 +141,9 @@
 <body>
 
 <nav>
-  <a class="nav-name" href="#about">Hadi Reisizadeh</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#news">News</a></li>
-    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -168,9 +151,41 @@
 
   <!-- ABOUT -->
   <section id="about">
+
+    <!-- LEFT: photo + icons -->
+    <div class="avatar-wrap">
+      <img src="Hadi1.jpg" alt="Hadi Reisizadeh">
+      <div class="avatar-socials">
+        <a href="mailto:hadir@umn.edu" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 7 10-7"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/hadi-reisizadeh" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href="https://github.com/hadireisizadeh" target="_blank" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=JkTIzooAAAAJ&hl=en" target="_blank" title="Google Scholar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M5.242 13.769 12 10l6.758 3.769"/>
+            <path d="M12 10 2 5l10-5 10 5-10 5"/>
+            <path d="M5 13.5V19a7 7 0 0 0 14 0v-5.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT: bio -->
     <div class="hero-text">
-      <div class="section-label">About</div>
-      <h1>Hadi Reisizadeh</h1>
       <div class="title-line">Postdoctoral Associate · Optimization for AI Lab · University of Minnesota</div>
 
       <p>
@@ -194,40 +209,6 @@
       </p>
     </div>
 
-    <img src="Hadi1.jpg" alt="Hadi Reisizadeh" style="width:180px; height:210px; object-fit:cover; border: 1px solid var(--border);">
-
-      <div class="avatar-socials">
-        <!-- Email -->
-        <a href="mailto:hadir@umn.edu" title="Email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="2" y="4" width="20" height="16" rx="2"/>
-            <path d="m2 7 10 7 10-7"/>
-          </svg>
-        </a>
-        <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/hadi-reisizadeh" target="_blank" title="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-            <rect x="2" y="9" width="4" height="12"/>
-            <circle cx="4" cy="4" r="2"/>
-          </svg>
-        </a>
-        <!-- GitHub -->
-        <a href="https://github.com/hadireisizadeh" target="_blank" title="GitHub">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-          </svg>
-        </a>
-        <!-- Google Scholar -->
-        <a href="https://scholar.google.com/citations?user=JkTIzooAAAAJ&hl=en" target="_blank" title="Google Scholar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M5.242 13.769 12 10l6.758 3.769"/>
-            <path d="M12 10 2 5l10-5 10 5-10 5"/>
-            <path d="M5 13.5V19a7 7 0 0 0 14 0v-5.5"/>
-          </svg>
-        </a>
-      </div>
-    </div>
   </section>
 
   <!-- NEWS -->
@@ -275,38 +256,6 @@
         </span>
       </li>
     </ul>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <p style="margin-bottom: 1.4rem;">Feel free to reach out for collaborations, research discussions, or general inquiries.</p>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="c-label">Email</div>
-        <div class="c-val"><a href="mailto:hadir@umn.edu">hadir@umn.edu</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="c-label">Phone</div>
-        <div class="c-val">+1 (612) 245-0654</div>
-      </div>
-      <div class="contact-card">
-        <div class="c-label">LinkedIn</div>
-        <div class="c-val"><a href="https://www.linkedin.com/in/hadi-reisizadeh" target="_blank">linkedin.com/in/hadi-reisizadeh</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="c-label">GitHub</div>
-        <div class="c-val"><a href="https://github.com/hadireisizadeh" target="_blank">github.com/hadireisizadeh</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="c-label">Google Scholar</div>
-        <div class="c-val"><a href="https://scholar.google.com/citations?user=JkTIzooAAAAJ&hl=en" target="_blank">View Publications</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="c-label">Location</div>
-        <div class="c-val">Minneapolis, MN, USA</div>
-      </div>
-    </div>
   </section>
 
 </main>
