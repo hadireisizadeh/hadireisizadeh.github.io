@@ -292,10 +292,13 @@
           <div class="author"><span class="me">Hadi Reisizadeh</span>, Jiajun Ruan, Sijia Liu, Mingyi Hong</div>
           <div class="periodical"><em>arXiv preprint arXiv:2609.36612</em>, 2026</div>
           <div class="links">
+            <button type="button" data-toggle="abs">Abs</button>
             <a href="https://arxiv.org/abs/2609.36612" target="_blank">arXiv</a>
             <a href="https://arxiv.org/pdf/2609.36612" target="_blank">PDF</a>
+            <a href="https://github.com/OptimAI-Lab/HiddenStateUnlearning" target="_blank">Code</a>
             <button type="button" data-toggle="bib">Bib</button>
           </div>
+          <div class="hidden abstract">LLM unlearning is usually evaluated only on the model's outputs, which can create an illusion of forgetting. We show that sensitive information persists in the model's hidden representations even after output-level leakage has been eliminated. Using generative probe decoders that measure layer-wise information leakage, together with theoretical analysis, we find substantial recoverable information in hidden states across the TOFU, MUSE and WMDP benchmarks, despite successful output-level unlearning metrics. To close this gap, we propose PARS (Probe-Adversarial Representation Suppression), an unlearning objective that adversarially minimizes the information that can be extracted from hidden representations across transformer layers. PARS outperforms baseline methods at controlling both output-level and representation-level leakage, and gives stronger erasure against adversarial probing and relearning attacks.</div>
           <div class="hidden bibtex"><button class="copy" type="button">Copy</button><pre>@article{reisizadeh2026hidden,
   title   = {Do {LLMs} Really Forget? Hidden-State Leakage in Model Unlearning and How to Fix it},
   author  = {Reisizadeh, Hadi and Ruan, Jiajun and Liu, Sijia and Hong, Mingyi},
