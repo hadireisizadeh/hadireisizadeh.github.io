@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadi Reisizadeh</title>
+<meta name="description" content="Hadi Reisizadeh: Postdoctoral Associate at the University of Minnesota working on LLM unlearning, safety and optimization. Open to industry research scientist roles.">
+<meta property="og:title" content="Hadi Reisizadeh">
+<meta property="og:description" content="LLM unlearning, safety and optimization. Open to industry research scientist roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1c1c1d;
+    --text-2: #555;
+    --muted: #828282;
+    --rule: #e8e8e8;
+    --code-bg: #f6f6f6;
+    --accent: #b509ac;
+    --accent-soft: rgba(181, 9, 172, .08);
+    --thumb-bg: #f4f4f6;
+    --sans: 'Roboto', -apple-system, 'Segoe UI', sans-serif;
+    --slab: 'Roboto Slab', Georgia, serif;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #1c1c1d;
+    --text: #e8e8e8;
+    --text-2: #bdbdbd;
+    --muted: #8f8f8f;
+    --rule: #3a3a3c;
+    --code-bg: #2a2a2c;
+    --accent: #2698ba;
+    --accent-soft: rgba(38, 152, 186, .12);
+    --thumb-bg: #26262a;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-weight: 400; font-size: 16px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color .25s, color .25s;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  b, strong { font-weight: 500; }
+
+  .container { max-width: 930px; margin: 0 auto; padding: 0 20px; }
+
+  /* NAV */
+  header.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 1px 6px rgba(0,0,0,.04);
+  }
+  .nav .container { display: flex; align-items: center; justify-content: space-between; height: 57px; }
+  .brand { white-space: nowrap; font-size: 1.2rem; font-weight: 300; color: var(--text); }
+  .brand b { font-weight: 500; }
+  .brand:hover { text-decoration: none; color: var(--accent); }
+  .nav ul { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .nav li a { display: block; padding: 6px 12px; color: var(--text); font-size: 1rem; }
+  .nav li a:hover, .nav li a.active { color: var(--accent); text-decoration: none; }
+  .toggle {
+    background: none; border: 0; color: var(--text); cursor: pointer;
+    width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%;
+  }
+  .toggle:hover { color: var(--accent); }
+  .toggle svg { width: 18px; height: 18px; }
+  .toggle .moon { display: none; }
+  :root[data-theme="dark"] .toggle .sun { display: none; }
+  :root[data-theme="dark"] .toggle .moon { display: block; }
+
+  main.container { padding-top: 92px; }
+
+  /* TITLE */
+  .post-title { font-size: 2.6rem; font-weight: 300; line-height: 1.2; margin-bottom: 4px; }
+  .post-title b { font-weight: 500; }
+  .desc { color: var(--text-2); font-size: 1rem; margin-bottom: 26px; }
+
+  /* PROFILE */
+  .profile { float: right; width: 30%; max-width: 260px; margin: 0 0 18px 30px; }
+  .profile img, .profile .ph {
+    width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+    border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,.14);
+  }
+  .profile .ph {
+    display: grid; place-items: center; background: var(--thumb-bg);
+    color: var(--muted); font-family: var(--slab); font-size: 2.6rem;
+  }
+  .profile .address { margin-top: 14px; font-size: .86rem; line-height: 1.5; color: var(--text-2); text-align: center; }
+  .about .profile .address p { margin: 0; text-align: center; }
+
+  .about p { margin-bottom: 1rem; text-align: justify; hyphens: auto; }
+  .market {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 4px 0 1.2rem;
+    text-align: left !important;
+  }
+
+  .interests { list-style: none; margin: 0 0 1rem; clear: none; }
+  .interests li { display: flex; gap: 12px; margin-bottom: 12px; }
+  .interests .em { font-size: 1.25rem; line-height: 1.5; flex: none; width: 1.6rem; text-align: center; }
+
+  /* SECTIONS */
+  h2.section {
+    clear: both;
+    font-family: var(--sans); font-weight: 400; font-size: 1.6rem; color: var(--accent);
+    margin: 40px 0 14px;
+  }
+  h2.section a { color: inherit; }
+
+  /* NEWS */
+  .news { width: 100%; border-collapse: collapse; }
+  .news tr { border-bottom: 1px solid var(--rule); }
+  .news tr:last-child { border-bottom: 0; }
+  .news th { width: 110px; text-align: left; vertical-align: top; padding: 9px 12px 9px 0; font-weight: 500; white-space: nowrap; font-size: .95rem; }
+  .news td { padding: 9px 0; font-size: .97rem; }
+  .news .more { display: none; }
+  .news.open .more { display: table-row; }
+  .show-more { margin-top: 8px; background: none; border: 0; color: var(--accent); cursor: pointer; font: inherit; font-size: .92rem; }
+
+  /* PUBLICATIONS */
+  .bibliography { list-style: none; }
+  .bibliography > li { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .bibliography > li:last-child { border-bottom: 0; }
+  .pub { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 26px; }
+  .pub > div { min-width: 0; }
+  .pub-left { position: relative; }
+  .abbr {
+    position: absolute; top: 8px; left: 8px; z-index: 1;
+    background: var(--accent); color: #fff;
+    font-size: .74rem; font-weight: 500; letter-spacing: .02em;
+    padding: 3px 9px; border-radius: 3px;
+  }
+  .abbr.j { background: #0b7a75; }
+  .abbr.pre { background: #6c757d; }
+  :root[data-theme="dark"] .abbr { color: #fff; }
+  .preview {
+    width: 100%; aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden;
+    background: var(--thumb-bg); border: 1px solid var(--rule);
+    display: grid; place-items: center;
+  }
+  .preview img, .preview svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pub .title { font-weight: 500; font-size: 1.06rem; line-height: 1.4; margin-bottom: 4px; }
+  .pub .author { font-size: .95rem; color: var(--text-2); margin-bottom: 2px; }
+  .pub .author .me { font-weight: 500; color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+  .pub .periodical { font-size: .95rem; margin-bottom: 10px; }
+  .pub .periodical em { color: var(--text); }
+  .pub .award { color: var(--accent); font-weight: 500; font-size: .9rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a, .links button {
+    font: inherit; font-size: .74rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--text); background: transparent; cursor: pointer;
+    border: 1px solid var(--text); border-radius: 3px; padding: 3px 10px;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .links a:hover, .links button:hover, .links button[aria-expanded="true"] {
+    background: var(--accent); border-color: var(--accent); color: #fff; text-decoration: none;
+  }
+  .hidden { display: none; margin-top: 12px; }
+  .hidden.open { display: block; }
+  .abstract { font-size: .94rem; color: var(--text-2); border: 1px dashed var(--rule); padding: 12px 14px; border-radius: 4px; text-align: justify; }
+  .bibtex { position: relative; }
+  .bibtex pre {
+    background: var(--code-bg); border-radius: 4px; padding: 12px 14px; overflow-x: auto;
+    font-size: .8rem; line-height: 1.5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .copy {
+    position: absolute; top: 8px; right: 8px; font: inherit; font-size: .74rem; cursor: pointer;
+    background: var(--bg); color: var(--text-2); border: 1px solid var(--rule); border-radius: 3px; padding: 2px 8px;
+  }
+
+  /* SOCIAL + FOOTER */
+  .profile-social { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+  .profile-social a {
+    width: 38px; height: 38px; display: grid; place-items: center;
+    border: 1px solid var(--rule); border-radius: 6px; color: var(--text-2);
+    transition: color .15s, border-color .15s, background .15s;
+  }
+  .profile-social a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); text-decoration: none; }
+  .profile-social svg { width: 19px; height: 19px; }
+  footer { border-top: 1px solid var(--rule); margin-top: 36px; padding: 18px 0 28px; text-align: center; font-size: .85rem; color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .nav ul li.hide-sm { display: none; }
+    .nav li a { padding: 6px 8px; }
+    .brand { font-size: 1.05rem; }
+    .post-title { font-size: 2.1rem; }
+    .profile { float: none; width: 62%; max-width: 240px; margin: 0 auto 22px; }
+    .about p { text-align: left; }
+    .pub { grid-template-columns: 1fr; gap: 14px; }
+    .pub-left { max-width: 320px; }
+    .news th { width: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <a class="brand" href="#top"><b>Hadi</b> Reisizadeh</a>
+    <ul>
+      <li><a class="active" href="#top">about</a></li>
+      <li class="hide-sm"><a href="#news">news</a></li>
+      <li><a href="#publications">publications</a></li>
+      <li><a href="CV_HADI_REISIZADEH.pdf" target="_blank">cv</a></li>
+      <li>
+        <button class="toggle" type="button" aria-label="Switch between light and dark mode">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main class="container" id="top">
+
+  <h1 class="post-title"><b>Hadi</b> Reisizadeh</h1>
+  <p class="desc">Postdoctoral Associate, <a href="https://optimai-lab.github.io/" target="_blank">Optimization for AI Lab</a>, University of Minnesota</p>
+
+  <article class="about">
+    <div class="profile">
+      <img src="Hadi.jpg" alt="Hadi Reisizadeh"
+           onerror="this.outerHTML='<div class=&quot;ph&quot;>HR</div>'">
+      <div class="address">
+        <p>University of Minnesota</p>
+        <p>Minneapolis, MN</p>
+        <p><a href="mailto:hadi.reisizadeh@gmail.com">hadi.reisizadeh@gmail.com</a></p>
+      </div>
+      <div class="profile-social">
+      <a href="mailto:hadi.reisizadeh@gmail.com" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+      </a>
+      <a href="https://scholar.google.com/citations?user=JkTIzooAAAAJ&hl=en" target="_blank" title="Google Scholar" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5 12 0z"/></svg>
+      </a>
+      <a href="https://github.com/hadireisizadeh" target="_blank" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/hadi-reisizadeh-8727429b/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/></svg>
+      </a>
+      </div>
+    </div>
+
+    <p>Hi, welcome to my page! I am a Postdoctoral Associate at the <a href="https://optimai-lab.github.io/" target="_blank">Optimization for Artificial Intelligence (OptimAI) Lab</a> at the <a href="https://twin-cities.umn.edu/" target="_blank">University of Minnesota</a>, working with Prof. Mingyi Hong. I received my Ph.D. and M.Sc. in Electrical and Computer Engineering (with a minor in Computer Science) from the University of Minnesota, Twin Cities, and my B.Sc. in Electrical and Computer Engineering from Isfahan University of Technology. Before my postdoc, I was a Research Intern on the Data Trust Research Team at Seagate Technology.</p>
+
+    <p>My research develops optimization and information-theoretic principles for safe and efficient machine learning, especially for large language models. I study how models learn and forget, and build methods grounded in theory that hold up in practice. My current research interests include:</p>
+
+    <ul class="interests">
+      <li><span class="em">🧹</span><div><b>LLM Unlearning:</b> removing private, copyrighted or harmful knowledge from trained models, and formulating unlearning so that forgetting takes priority without destroying utility (<a href="#pub-blur">BLUR</a>).</div></li>
+      <li><span class="em">🔍</span><div><b>Trustworthy Evaluation:</b> showing that "forgotten" knowledge resurfaces under probabilistic decoding, and measuring that leakage with the leak@<i>k</i> metric (<a href="#pub-leak">Leak@k</a>).</div></li>
+      <li><span class="em">🌐</span><div><b>Distributed Optimization:</b> convergence guarantees for agents that learn together over time-varying networks with imperfect, lossy communication.</div></li>
+      <li><span class="em">📐</span><div><b>Theoretical Foundations:</b> using optimization and information theory to expose the fundamental limits of existing algorithms and design rigorous alternatives.</div></li>
+    </ul>
+
+    <!-- Edit or remove this note once you've found a position -->
+    <p class="market"><b>I am on the industry job market</b> for research scientist roles in LLM safety, unlearning and optimization. Feel free to <a href="mailto:hadi.reisizadeh@gmail.com">reach out</a> or take a look at my <a href="CV_HADI_REISIZADEH.pdf" target="_blank">CV</a>.</p>
+  </article>
+
+  <!-- NEWS -->
+  <h2 class="section" id="news"><a href="#news">news</a></h2>
+  <table class="news" id="news-table">
+    <tr><th>Sep 2026</th><td>📝 New preprint: <a href="https://arxiv.org/abs/2609.36612" target="_blank"><b>Do LLMs Really Forget? Hidden-State Leakage in Model Unlearning and How to Fix it</b></a> is out on arXiv.</td></tr>
+    <tr><th>May 2026</th><td>🎉 Our paper <a href="https://arxiv.org/abs/2511.04934" target="_blank"><b>Leak@<i>k</i>: Unlearning Does Not Make LLMs Forget Under Probabilistic Decoding</b></a> is accepted at <b>ICML 2026</b>!</td></tr>
+    <tr><th>Jan 2026</th><td>🎉 Our paper <a href="https://aclanthology.org/2026.eacl-long.331/" target="_blank"><b>BLUR: A Bi-Level Optimization Approach for LLM Unlearning</b></a> is accepted at <b>EACL 2026</b>!</td></tr>
+    <tr><th>Sep 2024</th><td>🎓 Started as a <b>Postdoctoral Associate</b> at the OptimAI Lab, University of Minnesota.</td></tr>
+    <tr class="more"><th>May 2023</th><td>💼 Joined <b>Seagate Technology</b> as a Research Intern on the Data Trust Research Team.</td></tr>
+    <tr class="more"><th>Jul 2022</th><td>📄 Our paper on distributed optimization over time-varying graphs is accepted at <b>IEEE Transactions on Automatic Control</b>.</td></tr>
+  </table>
+  <button class="show-more" type="button" id="news-more" aria-expanded="false">Show older news</button>
+
+  <!-- PUBLICATIONS -->
+  <h2 class="section" id="publications"><a href="#publications">selected publications</a></h2>
+  <ol class="bibliography">
+
+    <li id="pub-hidden">
+      <div class="pub">
+        <div class="pub-left">
+          <span class="abbr pre">Preprint</span>
+          <div class="preview">
+            <!-- <img src="assets/hidden-state.png" alt=""> -->
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <rect width="200" height="150" style="fill:var(--thumb-bg)"/>
+              <g stroke="#9aa1b1" stroke-width="2" fill="none">
+                <rect x="30" y="40" width="26" height="76" rx="5"/>
+                <rect x="70" y="40" width="26" height="76" rx="5"/>
+                <rect x="110" y="40" width="26" height="76" rx="5"/>
+                <path d="M56 78h14M96 78h14M136 78h22"/>
+              </g>
+              <g style="fill:var(--accent)">
+                <circle cx="83" cy="62" r="5"/><circle cx="123" cy="92" r="5"/>
+              </g>
+              <rect x="148" y="66" width="24" height="24" rx="5" style="fill:var(--bg);stroke:#9aa1b1" stroke-width="2"/>
+              <text x="30" y="134" font-family="Roboto, sans-serif" font-size="11" style="fill:var(--muted)">leak in hidden states</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="title">Do LLMs Really Forget? Hidden-State Leakage in Model Unlearning and How to Fix it</div>
+          <!-- TODO: replace with the full author list -->
+          <div class="author"><span class="me">Hadi Reisizadeh</span>, et al.</div>
+          <div class="periodical"><em>arXiv preprint arXiv:2609.36612</em>, 2026</div>
+          <div class="links">
+            <a href="https://arxiv.org/abs/2609.36612" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2609.36612" target="_blank">PDF</a>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li id="pub-leak">
+      <div class="pub">
+        <div class="pub-left">
+          <span class="abbr">ICML'26</span>
+          <div class="preview">
+            <!-- To use a figure from the paper instead: <img src="assets/leakk.png" alt=""> -->
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <rect width="200" height="150" style="fill:var(--thumb-bg)"/>
+              <g fill="none" stroke-linecap="round" stroke-width="9" transform="translate(0,-6)">
+                <path d="M28 46h120" stroke="#cfd3dc"/>
+                <path d="M28 62h96" stroke="#cfd3dc"/>
+                <path d="M28 78h136" style="stroke:var(--accent)"/>
+                <path d="M28 94h84" stroke="#cfd3dc"/>
+                <path d="M28 110h124" style="stroke:var(--accent)"/>
+                <path d="M28 126h104" stroke="#cfd3dc"/>
+              </g>
+              <text x="28" y="144" font-family="Roboto, sans-serif" font-size="11" style="fill:var(--muted)">k samples, 2 leak</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="title">Leak@<i>k</i>: Unlearning Does Not Make LLMs Forget Under Probabilistic Decoding</div>
+          <div class="author"><span class="me">Hadi Reisizadeh</span>, Jiajun Ruan, Yiwei Chen, Soumyadeep Pal, Sijia Liu, Mingyi Hong</div>
+          <div class="periodical"><em>International Conference on Machine Learning (ICML)</em>, 2026</div>
+          <div class="links">
+            <button type="button" data-toggle="abs">Abs</button>
+            <a href="https://arxiv.org/abs/2511.04934" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2511.04934" target="_blank">PDF</a>
+            <button type="button" data-toggle="bib">Bib</button>
+          </div>
+          <div class="hidden abstract">Standard unlearning evaluations use deterministic (greedy) decoding and suggest that sensitive knowledge has been removed. We show that this knowledge reliably resurfaces once the model is sampled with standard probabilistic decoding. We introduce leak@<i>k</i>, a metric for the probability that forgotten knowledge reappears within <i>k</i> samples, and use it to evaluate existing methods on TOFU, MUSE and WMDP, finding persistent leakage. We then propose RULE (Robust Unlearning under LEak@<i>k</i>), which achieves zero leakage across many samples on TOFU and outperforms state-of-the-art methods on MUSE for most sampling budgets.</div>
+          <div class="hidden bibtex"><button class="copy" type="button">Copy</button><pre>@inproceedings{reisizadeh2026leak,
+  title     = {Leak@k: Unlearning Does Not Make LLMs Forget Under Probabilistic Decoding},
+  author    = {Reisizadeh, Hadi and Ruan, Jiajun and Chen, Yiwei and Pal, Soumyadeep and Liu, Sijia and Hong, Mingyi},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</pre></div>
+        </div>
+      </div>
+    </li>
+
+    <li id="pub-blur">
+      <div class="pub">
+        <div class="pub-left">
+          <span class="abbr">EACL'26</span>
+          <div class="preview">
+            <!-- <img src="assets/blur.png" alt=""> -->
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <rect width="200" height="150" style="fill:var(--thumb-bg)"/>
+              <rect x="26" y="26" width="148" height="98" rx="10" fill="none" stroke="#9aa1b1" stroke-width="2"/>
+              <text x="38" y="46" font-family="Roboto, sans-serif" font-size="11" style="fill:var(--muted)">upper: keep utility</text>
+              <rect x="44" y="58" width="112" height="50" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)" stroke-width="2"/>
+              <text x="58" y="88" font-family="Roboto, sans-serif" font-size="11" style="fill:var(--accent)">lower: forget first</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="title">BLUR: A Bi-Level Optimization Approach for LLM Unlearning</div>
+          <div class="author"><span class="me">Hadi Reisizadeh</span>, Jinghan Jia, Zhiqi Bu, Bhanukiran Vinzamuri, Anil Ramakrishna, Kai-Wei Chang, Volkan Cevher, Sijia Liu, Mingyi Hong</div>
+          <div class="periodical"><em>Conference of the European Chapter of the Association for Computational Linguistics (EACL)</em>, 2026</div>
+          <div class="links">
+            <button type="button" data-toggle="abs">Abs</button>
+            <a href="https://arxiv.org/abs/2506.08164" target="_blank">arXiv</a>
+            <a href="https://aclanthology.org/2026.eacl-long.331/" target="_blank">Paper</a>
+            <a href="https://github.com/OptimAI-Lab/BLURLLMUnlearning" target="_blank">Code</a>
+            <button type="button" data-toggle="bib">Bib</button>
+          </div>
+          <div class="hidden abstract">Unlearning knowledge and capabilities acquired during training is increasingly important for regulatory compliance and responsible AI. Existing methods typically combine a forget loss and a retain loss into one objective, which degrades performance because of the trade-off between the two. We argue that unlearning has a natural hierarchy in which forgetting takes priority, and formulate it as a bi-level problem: the lower level minimizes the forget loss, while the upper level preserves the model's utility. The resulting algorithm, BLUR, consistently outperforms state-of-the-art methods across unlearning tasks, models and metrics.</div>
+          <div class="hidden bibtex"><button class="copy" type="button">Copy</button><pre>@inproceedings{reisizadeh2026blur,
+  title     = {{BLUR}: A Bi-Level Optimization Approach for {LLM} Unlearning},
+  author    = {Reisizadeh, Hadi and Jia, Jinghan and Bu, Zhiqi and Vinzamuri, Bhanukiran and Ramakrishna, Anil and Chang, Kai-Wei and Cevher, Volkan and Liu, Sijia and Hong, Mingyi},
+  booktitle = {Proceedings of the Conference of the European Chapter of the Association for Computational Linguistics (EACL)},
+  year      = {2026}
+}</pre></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="pub">
+        <div class="pub-left">
+          <span class="abbr j">Automatica</span>
+          <div class="preview">
+            <!-- <img src="assets/automatica.png" alt=""> -->
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <rect width="200" height="150" style="fill:var(--thumb-bg)"/>
+              <g stroke="#9aa1b1" stroke-width="2">
+                <line x1="50" y1="50" x2="100" y2="80"/><line x1="150" y1="45" x2="100" y2="80"/>
+                <line x1="100" y1="80" x2="60" y2="115" stroke-dasharray="4 4"/><line x1="100" y1="80" x2="145" y2="112"/>
+                <line x1="50" y1="50" x2="150" y2="45" stroke-dasharray="4 4"/>
+              </g>
+              <g style="fill:var(--bg)" stroke="#0b7a75" stroke-width="2.5">
+                <circle cx="50" cy="50" r="9"/><circle cx="150" cy="45" r="9"/><circle cx="100" cy="80" r="9"/><circle cx="60" cy="115" r="9"/><circle cx="145" cy="112" r="9"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="title">Almost Sure Convergence of Distributed Optimization with Imperfect Information Sharing</div>
+          <div class="author"><span class="me">Hadi Reisizadeh</span>, Anand Gokhale, Behrouz Touri, Soheil Mohajer</div>
+          <div class="periodical"><em>Automatica</em>, vol. 179, 2025</div>
+          <div class="links">
+            <button type="button" data-toggle="abs">Abs</button>
+            <a href="https://arxiv.org/abs/2210.05897" target="_blank">arXiv</a>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0005109825002857" target="_blank">Paper</a>
+            <button type="button" data-toggle="bib">Bib</button>
+          </div>
+          <div class="hidden abstract">We study convex distributed optimization, where agents collaboratively solve a separable problem over time-varying networks while exchanging imperfect information. We analyze a two-time-scale decentralized gradient descent algorithm: one step-size sequence damps the imperfect information received from neighbors, and the other scales the local gradient. Under conditions on network connectivity and the two step-size sequences, the agents' states converge almost surely to an optimal point of the loss function.</div>
+          <div class="hidden bibtex"><button class="copy" type="button">Copy</button><pre>@article{reisizadeh2025almost,
+  title   = {Almost sure convergence of distributed optimization with imperfect information sharing},
+  author  = {Reisizadeh, Hadi and Gokhale, Anand and Touri, Behrouz and Mohajer, Soheil},
+  journal = {Automatica},
+  volume  = {179},
+  year    = {2025}
+}</pre></div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <div class="pub">
+        <div class="pub-left">
+          <span class="abbr j">IEEE TAC</span>
+          <div class="preview">
+            <!-- <img src="assets/tac.png" alt=""> -->
+            <svg viewBox="0 0 200 150" aria-hidden="true">
+              <rect width="200" height="150" style="fill:var(--thumb-bg)"/>
+              <path d="M30 120V28M30 120h146" stroke="#9aa1b1" stroke-width="2" fill="none"/>
+              <path d="M34 36C60 92 92 106 170 112" stroke="#0b7a75" stroke-width="3" fill="none"/>
+              <path d="M34 50C58 70 70 104 98 98S130 112 170 113" stroke="#9aa1b1" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+              <text x="118" y="96" font-family="Roboto, sans-serif" font-size="12" fill="#0b7a75">O(T<tspan dy="-5" font-size="9">-1/2</tspan><tspan dy="5">)</tspan></text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="title">Distributed Optimization Over Time-Varying Graphs With Imperfect Sharing of Information</div>
+          <div class="author"><span class="me">Hadi Reisizadeh</span>, Behrouz Touri, Soheil Mohajer</div>
+          <div class="periodical"><em>IEEE Transactions on Automatic Control</em>, 2022</div>
+          <div class="links">
+            <button type="button" data-toggle="abs">Abs</button>
+            <a href="https://arxiv.org/abs/2106.08469" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2106.08469" target="_blank">PDF</a>
+            <button type="button" data-toggle="bib">Bib</button>
+          </div>
+          <div class="hidden abstract">We study strongly convex distributed optimization, where a set of agents collaboratively solve a separable problem while sharing information over time-varying networks with lossy links. We propose a two-time-scale decentralized gradient descent algorithm, in which one time scale handles the degradation of incoming information and the other handles local gradient updates. With appropriately chosen step sizes, the agents' estimates converge to the global optimum at rate O(T<sup>-1/2</sup>). Along the way we develop new tools for handling diminishing average weights over time-varying graphs.</div>
+          <div class="hidden bibtex"><button class="copy" type="button">Copy</button><pre>@article{reisizadeh2022distributed,
+  title   = {Distributed Optimization Over Time-Varying Graphs With Imperfect Sharing of Information},
+  author  = {Reisizadeh, Hadi and Touri, Behrouz and Mohajer, Soheil},
+  journal = {IEEE Transactions on Automatic Control},
+  year    = {2022}
+}</pre></div>
+        </div>
+      </div>
+    </li>
+
+  </ol>
+  <p style="margin-top:6px;font-size:.95rem;color:var(--text-2)">For the full list, see my <a href="https://scholar.google.com/citations?user=JkTIzooAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
+
+</main>
+
+<footer>
+  <div class="container">© Copyright 2026 Hadi Reisizadeh.</div>
+</footer>
+
+<script>
+  // theme
+  (function () {
+    const root = document.documentElement;
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    root.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.querySelector('.toggle').addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+    });
+  })();
+
+  // abstract / bibtex toggles
+  document.querySelectorAll('[data-toggle]').forEach((btn) => {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => {
+      const box = btn.closest('.pub').querySelector('.' + (btn.dataset.toggle === 'abs' ? 'abstract' : 'bibtex'));
+      const open = !box.classList.contains('open');
+      box.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+
+  // copy bibtex
+  document.querySelectorAll('.copy').forEach((b) => {
+    b.addEventListener('click', () => {
+      const text = b.nextElementSibling.textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+        .then(() => { b.textContent = 'Copied'; setTimeout(() => (b.textContent = 'Copy'), 1500); })
+        .catch(() => { b.textContent = 'Select and copy'; });
+    });
+  });
+
+  // older news
+  document.getElementById('news-more').addEventListener('click', (e) => {
+    const t = document.getElementById('news-table');
+    const open = t.classList.toggle('open');
+    e.target.textContent = open ? 'Show less' : 'Show older news';
+    e.target.setAttribute('aria-expanded', String(open));
+  });
+
+  // highlight nav item for the section in view
+  const links = [...document.querySelectorAll('.nav li a[href^="#"]')];
+  const targets = ['top', 'news', 'publications'].map((id) => document.getElementById(id));
+  addEventListener('scroll', () => {
+    let current = 'top';
+    targets.forEach((t) => { if (t.getBoundingClientRect().top < 120) current = t.id; });
+    links.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  }, { passive: true });
+</script>
+</body>
+</html>
