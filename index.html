@@ -256,10 +256,10 @@
     <p>My research develops optimization and information-theoretic principles for safe and efficient machine learning, especially for large language models. I study how models learn and forget, and build methods grounded in theory that hold up in practice. My current research interests include:</p>
 
     <ul class="interests">
-      <li><span class="em">🧹</span><div><b>LLM Unlearning:</b> removing private, copyrighted or harmful knowledge from trained models, and formulating unlearning so that forgetting takes priority without destroying utility (<a href="#pub-blur">BLUR</a>).</div></li>
-      <li><span class="em">🔍</span><div><b>Trustworthy Evaluation:</b> showing that "forgotten" knowledge resurfaces under probabilistic decoding, and measuring that leakage with the leak@<i>k</i> metric (<a href="#pub-leak">Leak@k</a>).</div></li>
-      <li><span class="em">🌐</span><div><b>Distributed Optimization:</b> convergence guarantees for agents that learn together over time-varying networks with imperfect, lossy communication.</div></li>
-      <li><span class="em">📐</span><div><b>Theoretical Foundations:</b> using optimization and information theory to expose the fundamental limits of existing algorithms and design rigorous alternatives.</div></li>
+      <li><span class="em">🔍</span><div><b>Trustworthy Evaluation:</b> I showed that sensitive knowledge can resurface under probabilistic decoding and introduced leak@<i>k</i>, a meta-metric to quantify worst-case knowledge leakage across <i>k</i> generations. I also showed that unlearned models still encode sensitive knowledge in their hidden states, allowing it to be recovered through different attacks.</div></li>
+      <li><span class="em">🧹</span><div><b>LLM Unlearning:</b> I proposed BLUR, a bi-level optimization framework for LLM unlearning prioritizing the forget objective over the retain loss; RULE, an unlearning method designed to minimize leakage under leak@k; and PARS, removing knowledge at the hidden-state level and is more robust to various attacks.</div></li>
+      <li><span class="em">🌐</span><div><b>Distributed Optimization:</b> I characterized convergence guarantees for agents that learn together over time-varying networks with imperfect, lossy communication.</div></li>
+      <li><span class="em">📐</span><div><b>Theoretical Foundations:</b> I use optimization and information theory to expose the fundamental limits of existing algorithms and design rigorous alternatives.</div></li>
     </ul>
   </article>
 
